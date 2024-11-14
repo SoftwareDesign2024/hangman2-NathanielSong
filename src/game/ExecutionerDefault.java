@@ -7,11 +7,11 @@ import util.HangmanDictionary;
  * @author Nat Song 
  * ***/
 
-public class Executioner {
+public class ExecutionerDefault {
     private String secretWord;
     private DisplayWord displayWord;
 
-    public Executioner(HangmanDictionary dictionary, int wordLength) {
+    public ExecutionerDefault(HangmanDictionary dictionary, int wordLength) {
         this.secretWord = makeSecretWord(dictionary, wordLength);
         this.displayWord = new DisplayWord(secretWord);
     }

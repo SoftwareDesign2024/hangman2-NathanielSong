@@ -13,16 +13,16 @@ import util.HangmanDictionary;
  * Edited by Nat Song
  */
 
-public class HangmanGame {
+public class HangmanGameDefault {
     private int myNumGuessesLeft;
-    private Guesser guesser;
-    private Executioner executioner;
+    private GuesserDefault guesser;
+    private ExecutionerDefault executioner;
 
     //Create Hangman game with the given dictionary, word length, and number of guesses
-    public HangmanGame(HangmanDictionary dictionary, int wordLength, int numGuesses) {
+    public HangmanGameDefault(HangmanDictionary dictionary, int wordLength, int numGuesses) {
         this.myNumGuessesLeft = numGuesses;
-        this.guesser = new Guesser();
-        this.executioner = new Executioner(dictionary, wordLength);
+        this.guesser = new GuesserDefault();
+        this.executioner = new ExecutionerDefault(dictionary, wordLength);
     }
 
     // Play the game

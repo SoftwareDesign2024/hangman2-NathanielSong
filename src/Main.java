@@ -1,4 +1,4 @@
-import game.HangmanGame;
+import game.HangmanGameDefault;
 import game.HangmanGameAutoGuesser;
 import game.HangmanGameCheatingComputer;
 import util.HangmanDictionary;

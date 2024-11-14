@@ -7,12 +7,12 @@ import java.util.List;
  * @author Nat Song 
  * ***/
 
-public class Guesser {
+public class GuesserDefault {
     private List<Character> guessedLetters;
     private StringBuilder myLettersLeftToGuess;
     private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
-    public Guesser() {
+    public GuesserDefault() {
         guessedLetters = new ArrayList<>();
         myLettersLeftToGuess = new StringBuilder(ALPHABET);
     }
