@@ -1,4 +1,4 @@
-package game;
+package References;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +29,9 @@ public class HangmanGameCheatingComputer {
     private DisplayWord myDisplayWord;
     // tracks letters guessed
     private StringBuilder myLettersLeftToGuess; 
-    // executioner state
+    
+    
+    
     private List<String> myRemainingWords;
 
 

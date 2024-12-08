@@ -1,5 +1,7 @@
-package game;
+package game.logic;
 
+import game.Executioners.ExecutionerDefault;
+import game.Guessers.GuesserDefault;
 import util.ConsoleReader;
 import util.HangmanDictionary;
 
@@ -13,13 +15,13 @@ import util.HangmanDictionary;
  * Edited by Nat Song
  */
 
-public class HangmanGameDefault {
+public class HangmanInteractive {
     private int myNumGuessesLeft;
     private GuesserDefault guesser;
     private ExecutionerDefault executioner;
 
     //Create Hangman game with the given dictionary, word length, and number of guesses
-    public HangmanGameDefault(HangmanDictionary dictionary, int wordLength, int numGuesses) {
+    public HangmanInteractive(HangmanDictionary dictionary, int wordLength, int numGuesses) {
         this.myNumGuessesLeft = numGuesses;
         this.guesser = new GuesserDefault();
         this.executioner = new ExecutionerDefault(dictionary, wordLength);
@@ -28,11 +30,9 @@ public class HangmanGameDefault {
     // Play the game
     public void play() {
         boolean gameOver = false;
-
         while (!gameOver) {
             printStatus();
-            String guessInput = getUserInput();
-            char guess = guesser.makeGuess(guessInput);
+            char guess = guesser.makeGuess();
             processGuess(guess);
             gameOver = isGameOver();
         }
@@ -55,16 +55,6 @@ public class HangmanGameDefault {
         System.out.println("# misses left = " + myNumGuessesLeft);
         System.out.println("letters not yet guessed = " + guesser.getRemainingLetters());
         System.out.println();
-    }
-    
-    // Prompts the user to make a guess until a valid guess is submitted (returns the user's guess)
-    private String getUserInput() {
-    	String guessInput = ConsoleReader.promptString("Make a guess: ");
-    	while (!(guessInput.length() == 1 && Character.isAlphabetic(guessInput.charAt(0)))) {
-    		System.out.println("Please enter a single letter...");
-    		guessInput = ConsoleReader.promptString("Make a guess: ");
-    	}
-    	return guessInput;
     }
     
     // Checks if the guess is in the word then records the guess

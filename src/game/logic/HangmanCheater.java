@@ -1,38 +1,32 @@
-package game;
+package game.logic;
 
-import util.ConsoleReader;
+import game.Executioners.Executioner;
+import game.Executioners.ExecutionerCheater;
+import game.Executioners.ExecutionerDefault;
+import game.Guessers.Guesser;
+import game.Guessers.GuesserAuto;
+import game.Guessers.GuesserDefault;
 import util.HangmanDictionary;
 
-/**
- * This class represents the traditional word-guessing game Hangman
- * that plays interactively with the user.
- *
- * @author Robert C. Duvall
- * @author Shannon Duvall
- * 
- * Edited by Nat Song
- */
-
-public class HangmanDefault {
+public class HangmanCheater {
     private int myNumGuessesLeft;
-    private GuesserDefault guesser;
-    private ExecutionerDefault executioner;
+    private Guesser guesser;
+    private ExecutionerCheater executioner;
 
     //Create Hangman game with the given dictionary, word length, and number of guesses
-    public HangmanDefault(HangmanDictionary dictionary, int wordLength, int numGuesses) {
-        this.myNumGuessesLeft = numGuesses;
-        this.guesser = new GuesserDefault();
-        this.executioner = new ExecutionerDefault(dictionary, wordLength);
+    public HangmanCheater(HangmanDictionary dictionary, int wordLength, int numGuesses) {
+        myNumGuessesLeft = numGuesses;
+        guesser = new GuesserDefault();
+        executioner = new ExecutionerCheater(dictionary, wordLength);
     }
 
     // Play the game
     public void play() {
         boolean gameOver = false;
-
         while (!gameOver) {
+        	printWord();
             printStatus();
-            String guessInput = getUserInput();
-            char guess = guesser.makeGuess(guessInput);
+            char guess = guesser.makeGuess(executioner);
             processGuess(guess);
             gameOver = isGameOver();
         }
@@ -55,16 +49,6 @@ public class HangmanDefault {
         System.out.println("# misses left = " + myNumGuessesLeft);
         System.out.println("letters not yet guessed = " + guesser.getRemainingLetters());
         System.out.println();
-    }
-    
-    // Prompts the user to make a guess until a valid guess is submitted (returns the user's guess)
-    private String getUserInput() {
-    	String guessInput = ConsoleReader.promptString("Make a guess: ");
-    	while (!(guessInput.length() == 1 && Character.isAlphabetic(guessInput.charAt(0)))) {
-    		System.out.println("Please enter a single letter...");
-    		guessInput = ConsoleReader.promptString("Make a guess: ");
-    	}
-    	return guessInput;
     }
     
     // Checks if the guess is in the word then records the guess
